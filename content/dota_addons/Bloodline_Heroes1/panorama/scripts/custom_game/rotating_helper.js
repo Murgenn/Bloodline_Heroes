@@ -22,7 +22,7 @@ function StartRotatingHelper( params )
   }
 }
 
-function EndBuildingHelper()
+function EndRotatingHelper()
 {
   state = 'disabled'
   $( "#GreenSquare").style['margin'] = "-1000px 0px 0px 0px;";
@@ -40,14 +40,8 @@ function SendRotateCommand( params )
   // At that point we are continiously sending the mouse position
   if (state === "active")
   {  
-    EndBuildingHelper();
+    EndRotatingHelper();
   } 
-}
-
-function SendCancelCommand( params )
-{
-  EndBuildingHelper();
-  GameEvents.SendCustomGameEventToServer( "building_helper_cancel_command", {} );
 }
 
 (function () {
