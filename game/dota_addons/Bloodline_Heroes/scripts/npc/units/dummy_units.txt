@@ -4,6 +4,8 @@
 	"Model"							"models/development/invisiblebox.vmdl"
 	"MaxLevel" 						"0"
 
+	"Ability1"					"dummy_ability"
+		
 	"AttackCapabilities"    	"DOTA_UNIT_CAP_NO_ATTACK"
     "VisionDaytimeRange"    	"0"
     "VisionNighttimeRange"  	"0"
