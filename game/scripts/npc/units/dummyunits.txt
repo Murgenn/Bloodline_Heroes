@@ -1,0 +1,13 @@
+"npc_dota_creature_dummy_unit_mouse_position"
+{
+	"BaseClass"             		"npc_dota_creature"
+	"Model"							"models/development/invisiblebox.vmdl"
+	"MaxLevel" 						"0"
+
+	"AttackCapabilities"    	"DOTA_UNIT_CAP_NO_ATTACK"
+    "VisionDaytimeRange"    	"0"
+    "VisionNighttimeRange"  	"0"
+    "UnitRelationshipClass" 	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+    "MovementCapabilities"  	"DOTA_UNIT_CAP_MOVE_NONE"
+    "UnitLabel"					"dummy_mouse_position"
+}
