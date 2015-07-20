@@ -88,6 +88,10 @@ function GameMode:_InitGameMode()
   ListenToGameEvent("dota_tower_kill", Dynamic_Wrap(GameMode, 'OnTowerKill'), self)
   ListenToGameEvent("dota_player_selected_custom_team", Dynamic_Wrap(GameMode, 'OnPlayerSelectedCustomTeam'), self)
   ListenToGameEvent("dota_npc_goal_reached", Dynamic_Wrap(GameMode, 'OnNPCGoalReached'), self)
+
+  CustomGameEventManager:RegisterListener( "rotating_helper_rotate_command", Dynamic_Wrap(Rotatinghelper, "OnLeftClickRotate"))
+  
+        
   
   --ListenToGameEvent("dota_tutorial_shop_toggled", Dynamic_Wrap(GameMode, 'OnShopToggled'), self)
 

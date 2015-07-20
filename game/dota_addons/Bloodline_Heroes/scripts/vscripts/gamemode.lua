@@ -27,6 +27,7 @@ require('internal/events')
 require('settings')
 -- events.lua is where you can specify the actions to be taken when any event occurs and is one of the core barebones files.
 require('events')
+require("rotatinghelper")
 
 
 --[[
