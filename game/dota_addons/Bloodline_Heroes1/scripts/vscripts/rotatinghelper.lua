@@ -1,6 +1,6 @@
 
 --should come from abilities.lua with a player handle to send to Panorama to create the box (the way we start rotaing (FOR NOW))
-function Rotatinghelper:StartRotatingBox(player)
+function Rotatinghelper:StartRotatingHelperBox(player)
 
 	--we should already have the player handle
 	if player ~= nil then
