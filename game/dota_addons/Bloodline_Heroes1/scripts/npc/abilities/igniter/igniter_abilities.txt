@@ -1,0 +1,47 @@
+
+// Igniter is a ranged class in BC, fairly squishy with abilities which are straighforward and should be easy to implement
+// here we will try to copy igniters abilities, i will list and describe them shortly
+// 1	Fireball, a skillshot dealing damage and applying a DOT debuff
+// 2	Firestrom, a skillshot shooting 3 fireballs dealing a bit more damage and with a knockback
+// 3	Searing Displacement, teleport you to the target location (with a phase period)
+// 4	Volcano, pretty much a standard delayed aoe stun
+// 5	Crippling fire, a projectile which knocks the target back, further the closer the target are to you
+// 6	Living flame, igniter becomes immaterial (like Earthspirits aghs stone) and deals damage when it ends
+// 7	Conflageration (ult), igniter flies forward (immortal) and creates a trail of lava behind him
+// 8	Firestorm EX, kinda like Phoenixs sunray, dealing damage and applying the DOT
+// 9	Crippling fire EX, projectile which bounces once and silences and roots the targets
+// 
+//
+
+"igniter_fireball"
+{
+	"BaseClass"             		"ability_datadriven"
+	"AbilityTextureName"			"particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf" //we use linas ability for now
+	"MaxLevel" 						"1"
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"	"heroes/igniter/fireball.lua"
+			"Function"		"SpellStart"
+		}
+	}
+
+	"Modifiers"
+	{
+		"modifier_animation"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+	
+			"EffectName"		"particle_name"
+			"EffectAttachType"	"follow_origin"
+	
+			[ACTIONS]
+		}
+	}
+
+}
