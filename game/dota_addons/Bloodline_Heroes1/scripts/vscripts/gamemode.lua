@@ -103,14 +103,41 @@ end
 ]]
 function GameMode:OnGameInProgress()
   DebugPrint("[BAREBONES] The game has officially begun")
+  local repeat_spawn_target_practice = 5
+  local start_after = 5
 
   Timers:CreateTimer(30, -- Start this timer 30 game-time seconds later
     function()
       DebugPrint("This function is called 30 seconds after the game begins, and every 30 seconds thereafter")
       return 30.0 -- Rerun this timer every 30 game-time seconds 
     end)
+
+  --our timer to continually spawn creeps walking towards the hero
+  Timers:CreateTimer(start_after, function()
+    SpawnTargetPractice()
+    return repeat_spawn_target_practice
+    end)
 end
 
+function SpawnTargetPractice()
+  local heroes = GetAllHeroes()
+  if heroes[0] ~= nil then
+    local hero = heroes[0]
+    local point = hero
+    --returns a random 3d vector (x,y,0) for offset
+    local offset = RandomVector(1000)
+    local spawnPoint = point + offset
+
+    local unit = CreateUnitByName("npc_dota_creature_target_practice", spawnPoint, true, false, false, DOTA_TEAM_NEUTRALS) --[[Returns:handle
+    Creates a DOTA unit by its dota_npc_units.txt name ( szUnitName, vLocation, bFindClearSpace, hNPCOwner, hUnitOwner, iTeamNumber )
+    ]]
+    --move the unit created towards the hero
+    ExecuteOrderFromTable({ UnitIndex = unit:GetEntityIndex(),
+                            OrderType = DOTA_UNIT_MOVE_TO_POSITION,
+                            Position = hero:GetAbsOrigin(), Queue = true} )
+    print("Move ", unit:GetEntityIndex(), " to ", hero:GetAbsOrigin()
+    end 
+end
 
 
 -- This function initializes the game mode and is called before anyone loads into the game

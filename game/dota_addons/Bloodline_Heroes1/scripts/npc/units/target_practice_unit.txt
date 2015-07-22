@@ -1,0 +1,62 @@
+"npc_dota_creature_target_practice"
+    {
+        //General
+        "BaseClass"                     "npc_dota_creature"
+        "Model"                         "models/courier/frog/frog.vmdl"
+        "ModelScale"                    "0.7"
+        "Level"                         "3"
+        "HelthBarOffset"                "140"
+        "HasInventory"                  "1"
+
+        "Ability1"                      " "
+        "Ability2"                      " "
+
+        "ArmorPhysical"                 "0.0"
+        "MagicalResistance"             "0"
+
+        "AttackCapabilities"            "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "AttackDamageType"              "DAMAGE_TYPE_ArmorPhysical"
+        "AttackDamageMin"               "1"
+        "AttackDamageMax"               "1"
+        "AttackRate"                    "1"
+        "AttackAnimationPoint"          "1"
+        "AttackAcquisitionRange"        "1"
+        "AttackRange"                   "1"
+
+        "BountyGoldMin"                 "9"
+        "BountyGoldMax"                 "10"
+
+        //Bounds
+        "BoundsHullName"                "DOTA_HULL_SIZE_HERO"
+        "RingRadius"                    "65"
+
+        //Movement
+        "MovementCapabilities"          "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"                 "270"
+        "MovementTurnRate"              "20"
+
+        //Status
+        "StatusHealth"                  "5000"
+        "StatusHealthRegen"             "0"
+        "StatusMana"                    "1000"
+        "StatusManaRegen"               "0"
+
+        //Vision
+        "VisionDaytimeRange"            "1400"
+        "VisionNighttimeRange"          "800"
+
+        //Team
+        "TeamName"                      "DOTA_TEAM_NEUTRALS"
+        "CombatClassAttack"             "DOTA_COMBAT_CLASS_ATTACK_BASIC"
+        "CombatClassDefend"             "DOTA_COMBAT_CLASS_DEFEND_STRONG"
+        "UnitRelationShipClass"         "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+        //Creature Data
+        "Creature"
+        {
+            "DisableClumpingBehavior"   "1"
+        }
+        //uncomment this and write a script which will automaticly run a script
+        //use the script for AI behavior (move to hero, patrol) see this example, 
+        //"vscripts"  "ai_npc_creature_target_practice.lua"
+    }
