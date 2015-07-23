@@ -138,7 +138,7 @@ function SpawnTargetPractice()
     ExecuteOrderFromTable({ UnitIndex = unit:GetEntityIndex(),
                             OrderType = DOTA_UNIT_MOVE_TO_POSITION,
                             Position = hero:GetAbsOrigin(), Queue = true} )
-    print("Move ", unit:GetEntityIndex(), " to ", hero:GetAbsOrigin()
+    print("Move ", unit:GetEntityIndex(), " to ", hero:GetAbsOrigin())
     end 
 end
 
