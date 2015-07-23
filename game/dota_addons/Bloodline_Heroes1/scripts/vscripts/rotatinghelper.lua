@@ -35,8 +35,8 @@ function Rotatinghelper:OnLeftClickRotate(args)
 	local player = hero:GetMainControllingPlayer()
 	local positionData =
 	{
-		player = player
-		mousePosition = location
+		player = player,
+		mousePosition = location,
 	}
 	--send the information to store it this frame (to be used by abilities, camera)
 	Abilities:UpdatePosition(positionData)
