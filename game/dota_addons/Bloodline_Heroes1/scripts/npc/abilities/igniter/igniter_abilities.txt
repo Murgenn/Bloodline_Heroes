@@ -19,8 +19,51 @@
 	"AbilityTextureName"			"particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf" //we use linas ability for now
 	"MaxLevel" 						"1"
 
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityCooldown"				"1.5"
+	"AbilityCastAnimation" 			"ACT_DOTA_ATTACK"
+	"AbilityCastPoint"				"1"
+	"AnimationIgnoresModelScale"    "0"
 
+	"precache"
+	{
+		"particle"  "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf"
+		"soundfile" "soundevents/game_sounds_heroes/game_sounds_HERO.vsndevts"
+	}
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"damage"			"50"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"range"				"900"
+		}
+		"03"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"animation_duration"	"1"
+		}
+		"04"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"projectile_speed"	"700"
+		}
+		"05"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"start_radius"		"50"
+		}
+		"06"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"ignite_duration"	"6"
+		}
+	}
 	"OnSpellStart"
 	{
 		"RunScript"
@@ -28,20 +71,79 @@
 			"ScriptFile"	"heroes/igniter/fireball.lua"
 			"Function"		"SpellStart"
 		}
+		"ApplyModifier"
+		{
+			"ModifierName"	"modifier_animation"
+			"Target" 		"CASTER"
+			"Duration"		"%duration"
+		}
 	}
-
 	"Modifiers"
 	{
+		//might not be needed but if the casting animation does not work, here is where it will go
 		"modifier_animation"
 		{
 			"Passive"			"1"
 			"IsHidden"			"1"
 	
-			"EffectName"		"particle_name"
-			"EffectAttachType"	"follow_origin"
-	
-			[ACTIONS]
+			"OnCreated"
+			{
+				
+			}
+		}
+		"modifier_dummy_cast"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+
+			"OnCreated"
+			{
+				//ideally the "EffectName" should be Linas autoattack (the skill is not very large in BC)
+				"LinearProjectile"
+				{
+				    "Target"      	 "TARGET"
+					"EffectName"	 "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf"
+					"MoveSpeed"		 "%projectile_speed"
+					"StartRadius"	 "%start_radius"
+					"StartPosition"  "attach_attack1"
+					"EndRadius"      "%start_radius"
+					"HasFrontalCone" "0"
+					"FixedDistance"  "%range"
+					"TargetTeams"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"TargetTypes"	 "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+					"TargetFlags"	 "DOTA_UNIT_TARGET_FLAG_NONE"						
+				    "ProvidesVision" "0"
+				}
+			}
+		}
+		"modifier_ignite"
+		{
+			"Debuff"			"1"
+
+			"OnCreated"
+			{
+				//run script to remove the debuff and apply it again
+			}
+
 		}
 	}
-
+	"OnProjectileHitUnit"
+	{
+		"DeleteOnHit"	"1"
+		
+		"Damage"
+		{
+			"Target"		"TARGET"
+			"Type"			"DAMAGE_TYPE_MAGICAL"
+			"Damage"		"%damage"
+		}
+		//Apply Ignite debuff
+		"ApplyModifier"
+		{
+			"ModifierName"	"modifier_name"
+			"Target" 		"TARGET"
+			"Duration"		"%duration"
+		}
+		//Apply knockback
+	}
 }

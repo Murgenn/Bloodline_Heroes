@@ -88,6 +88,9 @@ function GameMode:OnHeroInGame(hero)
   local item = CreateItem("item_example_item", hero, hero)
   hero:AddItem(item)
 
+  local playerID = hero:GetPlayerOwnerID()
+  PlayerResource:SetCameraTarget( PlayerID, hero )
+
   --[[ --These lines if uncommented will replace the W ability of any hero that loads into the game
     --with the "example_ability" ability
 
