@@ -38,8 +38,9 @@ end
 function Abilities:GetMousePos(player)
 	if heroPosition[player] ~= nil then
 		local position = heroPosition[player]
+		print("Position fetch completed", player, player:GetAssignedHero())
 	else
-		print("Tried to fetch mousePos from: player, hero", player, player.GetAssignedHero())
+		print("Tried to fetch mousePos from: player, hero", player, player:GetAssignedHero())
 	end
 	--should send the information back for when a hero is for exemple casting abilities
 	return position

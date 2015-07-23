@@ -39,7 +39,7 @@ end
 -- An NPC has spawned somewhere in game.  This includes heroes
 function GameMode:_OnNPCSpawned(keys)
   local npc = EntIndexToHScript(keys.entindex)
-
+  
   if npc:IsRealHero() and npc.bFirstSpawned == nil then
     npc.bFirstSpawned = true
     GameMode:OnHeroInGame(npc)

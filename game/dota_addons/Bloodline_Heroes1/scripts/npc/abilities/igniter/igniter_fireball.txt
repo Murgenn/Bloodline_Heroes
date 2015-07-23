@@ -63,6 +63,22 @@
 			"var_type"			"FIELD_FLOAT"
 			"ignite_duration"	"6"
 		}
+		"07"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"ignite_damage"		"5"
+		}
+		"08"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"knockback"			"50"
+		}
+		"09"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"knockback_duration"	"0.25"
+		}
+
 	}
 	"OnSpellStart"
 	{
@@ -91,7 +107,7 @@
 				
 			}
 		}
-		"modifier_dummy_cast"
+		"modifier_fireball_thinker"
 		{
 			"Passive"			"1"
 			"IsHidden"			"1"
@@ -122,7 +138,17 @@
 
 			"OnCreated"
 			{
-				//run script to remove the debuff and apply it again
+				"ThinkInterval"  "0.5"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"CASTER"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%ignite_damage"
+					}
+				}
+				
 			}
 
 		}
@@ -138,12 +164,27 @@
 			"Damage"		"%damage"
 		}
 		//Apply Ignite debuff
+		"RemoveModifier"
+		{
+			"ModifierName"	"modifier_ignite"
+			"Target" 		"TARGET"
+		}
 		"ApplyModifier"
 		{
-			"ModifierName"	"modifier_name"
+			"ModifierName"	"modifier_ignite"
 			"Target" 		"TARGET"
-			"Duration"		"%duration"
+			"Duration"		"%ignite_duration"
 		}
 		//Apply knockback
+		"Knockback"
+		{
+			"Target"            "TARGET"
+			"Center" 	        "CASTER"
+			"Distance"	        "%distance"
+			"Duration"	        "%air_time"
+			"Height"	        "1"
+			"IsFixedDistance"	"1"
+			"ShouldStun"        "0"	
+		}
 	}
 }

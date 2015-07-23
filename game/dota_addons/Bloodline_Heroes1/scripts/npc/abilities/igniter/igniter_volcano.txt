@@ -1,0 +1,41 @@
+// 4	Volcano, pretty much a standard delayed aoe stun
+
+"igniter_volcano"
+{
+	"BaseClass"             		"ability_datadriven"
+	"AbilityTextureName"			"particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf"
+	"MaxLevel" 						"1"
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityCooldown"				"1.5"
+	"AbilityCastAnimation" 			"ACT_DOTA_LIGHT_STRIKE_ARRAY"
+	"AbilityCastPoint"				"1.5"
+	"AnimationIgnoresModelScale"    "0"
+
+	"precache"
+	{
+		"particle"  " "
+		"soundfile" " "
+	}
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"damage"			"75"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"stun_duration"				"1.5"
+		}
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"	"heroes/igniter/volcano.lua"
+			"Function"		"StartSpell"
+		}
+	}
+}

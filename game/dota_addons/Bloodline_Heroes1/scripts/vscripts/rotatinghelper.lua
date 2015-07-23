@@ -31,4 +31,14 @@ function Rotatinghelper:OnLeftClickRotate(args)
 
 	--might have to use the negative vector (will try after testing)
 	hero:SetForwardVector(direction)
+
+	local player = hero:GetMainControllingPlayer()
+	local positionData =
+	{
+		player = player
+		mousePosition = location
+	}
+	--send the information to store it this frame (to be used by abilities, camera)
+	Abilities:UpdatePosition(positionData)
+
 end
